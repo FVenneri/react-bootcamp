@@ -7,10 +7,12 @@ it('works for ones', () => {
 
 it('works for twos', () => {
   expect(twos.evalRoll([3, 2, 2, 2, 2])).toEqual(8);
+  expect(twos.evalRoll([3, 6, 6, 5, 1])).toEqual(0);
 });
 
 it('works for threes', () => {
   expect(threes.evalRoll([3, 2, 2, 2, 2])).toEqual(3);
+  expect(threes.evalRoll([1, 2, 2, 2, 2])).toEqual(0);
 });
 
 it('works for fours', () => {
@@ -38,7 +40,8 @@ it('works for four of kind', () => {
 })
 
 it('works for full house', () => {
-  expect(fullHouse.evalRoll([1, 1, 1, 2, 2])).toEqual(25);
+  expect(fullHouse.evalRoll([1, 1, 2, 1, 2])).toEqual(25);
+  expect(fullHouse.evalRoll([2, 1, 1, 2, 2])).toEqual(25);
   expect(fullHouse.evalRoll([1, 1, 1, 1, 1])).toEqual(0);
   expect(fullHouse.evalRoll([1, 1, 1, 1, 2])).toEqual(0);
 })
@@ -50,6 +53,8 @@ it('works for small straights', () => {
   expect(smallStraight.evalRoll([1, 2, 3, 4, 4])).toEqual(30);
   expect(smallStraight.evalRoll([2, 2, 3, 4, 5])).toEqual(30);
   expect(smallStraight.evalRoll([1, 2, 3, 4, 5])).toEqual(30);
+  expect(smallStraight.evalRoll([1, 2, 3, 4, 6])).toEqual(30);
+  expect(smallStraight.evalRoll([3, 3, 4, 5, 6])).toEqual(30);
   expect(smallStraight.evalRoll([2, 2, 3, 4, 6])).toEqual(0);
   expect(smallStraight.evalRoll([1, 3, 4, 5, 1])).toEqual(0);
 })
