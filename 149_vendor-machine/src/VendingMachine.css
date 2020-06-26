@@ -1,0 +1,12 @@
+.VendingMachine {
+  height: 100vh;
+}
+
+.VendingMachine-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: darkgray;
+  height: 3rem;
+}
+

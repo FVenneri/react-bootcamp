@@ -1,0 +1,13 @@
+.Dog {
+
+}
+
+.Dog-card img {
+  width: 75%;
+}
+
+.Dog-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

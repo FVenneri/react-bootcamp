@@ -1,0 +1,2 @@
+npm install --save @fortawesome/fontawesome-free
+npx create-react-app <APPNAME> && cd <APPNAME> && npm install --save react-router-dom && npm audit fix --force

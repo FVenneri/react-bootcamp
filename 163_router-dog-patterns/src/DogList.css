@@ -1,0 +1,25 @@
+/*DogList.DogList {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+
+.DogList img {
+  width: 75%;
+  border-radius: 50%;
+}
+
+/*.DogList-link {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  flex-direction: column;*/
+/*  padding: 20px;*/
+/*}*/
+
+/*.DogList-active {*/
+/*  color: purple;*/
+/*}*/
+/*.DogList-active:hover {*/
+/*  color: darkmagenta;*/
+/*}*/
