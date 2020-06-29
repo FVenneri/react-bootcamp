@@ -1,9 +1,9 @@
 import React from 'react';
-import RecipeApp from "./RecipeApp";
+import Login from "./Login";
 
 function App() {
   return (
-    <RecipeApp title="Recipe App"/>
+    <Login/>
   );
 }
 
