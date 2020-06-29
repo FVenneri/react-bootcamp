@@ -1,3 +1,18 @@
+# Exercise description
+- React TK Exercise (instructors: @Giuseppe Bandiera, @Iván Navarro):
+    - We want to create a client application for the Recipe/Ingredients server we already built in the previous exercise (Django)
+    - Use Hooks not classes
+    - Create React App → [https://facebook.github.io/create-react-app/](https://facebook.github.io/create-react-app/)
+    - Style library → [Styled components](https://www.styled-components.com/)
+    - For routing use this library → [https://reacttraining.com/react-router/](https://reacttraining.com/react-router/)
+    - [React docs](https://reactjs.org/)
+    - [React testing library](https://github.com/kentcdodds/react-testing-library)
+    - [TravelPerk Styleguide](https://www.notion.so/travelperk/Frontend-Guidelines-0743e3e822934b4899e98062f9e42000)
+
+You can find more information, questions or issues on [#travelperk-university](https://travelperk.slack.com/messages/C4C085Z0B/convo/C3NTN87L3-1548067719.221800/?cdn_fallback=1) channel on slack.
+
+# CREATE-REACT-APP README
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
