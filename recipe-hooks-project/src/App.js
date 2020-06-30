@@ -1,9 +1,20 @@
-import React from 'react';
+import React from "react";
 import Login from "./Login";
+import {AuthContext, useAuth} from "./contexts/useAuth";
 
 function App() {
+  const isAuthenticated = useAuth();
+
   return (
-    <Login/>
+    <AuthContext.Provider>
+      {isAuthenticated
+        ? <>
+        </>
+        : <>
+          <Login/>
+        </>
+      }
+    </AuthContext.Provider>
   );
 }
 
