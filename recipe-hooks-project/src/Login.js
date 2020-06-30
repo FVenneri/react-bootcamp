@@ -1,28 +1,29 @@
-import React from "react";
+import React, {useContext} from "react";
 import useInputState from "./hooks/useInputState";
 import axios from "axios";
 import {Container, Input, LoginButton, LoginForm, LoginFormTitle} from "./components/LoginForm"
+import {AuthContext} from "./contexts/AuthenticationProvider";
 
 export default function Login() {
   const [email, handleEmailChange] = useInputState("");
   const [password, handlePasswordChange] = useInputState("");
+  const {login} = useContext(AuthContext);
 
-  async function login(evt) {
+  async function handleLogin(evt) {
     evt.preventDefault();
     const token = await axios.post("http://localhost:8000/api/user/token/",
       {email: email, password: password}
     );
-    // STORE INTO CONTEXT
-    // REDIRECT TO HOME
+    login(token);
   }
 
   return (
     <Container className="Login">
       <LoginForm>
         <LoginFormTitle>Login</LoginFormTitle>
-        <Input type="input" value={email} name="email" onChange={handleEmailChange}/>
+        <Input type="text" value={email} name="email" onChange={handleEmailChange}/>
         <Input type="password" value={password} name="password" onChange={handlePasswordChange}/>
-        <LoginButton handleClick={login} primary>login</LoginButton>
+        <LoginButton handleClick={handleLogin} primary name="loginButton">login</LoginButton>
       </LoginForm>
     </Container>
   );

@@ -1,20 +1,15 @@
 import React from "react";
-import Login from "./Login";
-import {AuthContext, useAuth} from "./contexts/useAuth";
+import {AuthenticationProvider} from "./contexts/AuthenticationProvider";
+import AppPage from "./AppPage";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
-  const isAuthenticated = useAuth();
-
   return (
-    <AuthContext.Provider>
-      {isAuthenticated
-        ? <>
-        </>
-        : <>
-          <Login/>
-        </>
-      }
-    </AuthContext.Provider>
+    <AuthenticationProvider>
+      <BrowserRouter>
+        <AppPage/>
+      </BrowserRouter>
+    </AuthenticationProvider>
   );
 }
 
