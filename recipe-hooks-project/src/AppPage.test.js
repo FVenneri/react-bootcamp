@@ -1,9 +1,12 @@
-import {fireEvent, render} from "@testing-library/react";
-import {AuthContext, AuthenticationProvider} from "./contexts/AuthenticationProvider";
-import AppPage from "./AppPage";
 import React from "react";
-import Login from "./Login";
+import {fireEvent, render} from "@testing-library/react";
 import {waitForElement} from "@testing-library/dom";
+import {AuthContext, AuthenticationProvider} from "./contexts/AuthenticationProvider";
+import axios from "axios";
+import AppPage from "./AppPage";
+import Login from "./Login";
+
+jest.mock("axios");
 
 test("when not authenticated, renders login", () => {
   const {container} = render(
@@ -31,9 +34,25 @@ test("when not authenticated, an user can login", async () => {
     </AuthenticationProvider>
   );
 
+  axios.post.mockImplementation(() => Promise.resolve({status: 200, data: {token: "myToken"}}));
+
   fireEvent.change(container.querySelector("input[name=email]"), {target: {value: "test@test.com"}});
   fireEvent.change(container.querySelector("input[name=password]"), {target: {value: "testpass"}});
   fireEvent.click(container.querySelector("button[name=loginButton]"));
-  
+
   expect(await waitForElement(() => getByText(/Recipe App/i))).toBeInTheDocument();
+});
+
+test("login fails", async () => {
+  const {container} = render(
+    <AuthenticationProvider value={{isAuthenticated: false}}>
+      <AppPage/>
+    </AuthenticationProvider>
+  );
+
+  axios.post.mockImplementation(() => Promise.reject({status: 400, data: {error: "Login Failed"}}));
+
+  fireEvent.click(container.querySelector("button[name=loginButton]"));
+  
+  expect(container.querySelector("input[name=email]")).toBeInTheDocument();
 });

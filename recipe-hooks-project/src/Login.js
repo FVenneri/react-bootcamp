@@ -11,10 +11,15 @@ export default function Login() {
 
   async function handleLogin(evt) {
     evt.preventDefault();
-    const token = await axios.post("http://localhost:8000/api/user/token/",
-      {email: email, password: password}
-    );
-    login(token);
+    try {
+      const response = await axios.post("http://localhost:8000/api/user/token/",
+        {email: email, password: password}
+      );
+      if (response.status === 200)
+        login(response.token);
+    } catch (e) {
+      console.log("Login failed"); //FIXME message to user?
+    }
   }
 
   return (
