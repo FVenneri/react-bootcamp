@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import React from "react";
 
 const Container = styled.div`
   height: 100vh;
   display: flex;
 `;
 
-const LoginFormTitle = styled.h3`
+const FormTitle = styled.h3`
   font-size: 2em;
 `;
 
-const LoginForm = styled.form`
+const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +37,7 @@ const Input = styled.input.attrs(props => ({
   padding: 1em;
 `;
 
-const LoginButton = styled.button.attrs(props => ({
+const SubmitButton = styled.button.attrs(props => ({
   onClick: props.handleClick
 }))`
   background: ${props => props.primary ? "blue" : "white"};
@@ -50,4 +49,4 @@ const LoginButton = styled.button.attrs(props => ({
   border-radius: 3px;
 `;
 
-export {Container, LoginForm, LoginFormTitle, Input, LoginButton};
+export {Container, Form, FormTitle, Input, SubmitButton};

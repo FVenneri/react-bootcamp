@@ -1,8 +1,9 @@
 import React, {useContext} from "react";
 import useInputState from "./hooks/useInputState";
 import axios from "axios";
-import {Container, Input, LoginButton, LoginForm, LoginFormTitle} from "./components/LoginForm"
+import {Container, Form, FormTitle, Input, SubmitButton} from "./components/Form"
 import {AuthContext} from "./contexts/AuthenticationProvider";
+import {Link} from "react-router-dom";
 
 export default function Login() {
   const [email, handleEmailChange] = useInputState("");
@@ -24,12 +25,13 @@ export default function Login() {
 
   return (
     <Container className="Login">
-      <LoginForm>
-        <LoginFormTitle>Login</LoginFormTitle>
+      <Form>
+        <FormTitle>Login</FormTitle>
         <Input type="text" value={email} name="email" onChange={handleEmailChange}/>
         <Input type="password" value={password} name="password" onChange={handlePasswordChange}/>
-        <LoginButton handleClick={handleLogin} primary name="loginButton">login</LoginButton>
-      </LoginForm>
+        <SubmitButton handleClick={handleLogin} primary name="loginButton">login</SubmitButton>
+        <Link to="/app/register">You don't have an account? Register it.</Link>
+      </Form>
     </Container>
   );
 };

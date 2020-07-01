@@ -29,7 +29,7 @@ test("when authenticated, do not render login", () => {
 
 test("when not authenticated, an user can login", async () => {
   const {container, getByText} = render(
-    <AuthenticationProvider value={{isAuthenticated: false}}>
+    <AuthenticationProvider value={{token: null}}>
       <AppPage/>
     </AuthenticationProvider>
   );
@@ -45,7 +45,7 @@ test("when not authenticated, an user can login", async () => {
 
 test("login fails", async () => {
   const {container} = render(
-    <AuthenticationProvider value={{isAuthenticated: false}}>
+    <AuthenticationProvider value={{token: null}}>
       <AppPage/>
     </AuthenticationProvider>
   );
@@ -53,6 +53,6 @@ test("login fails", async () => {
   axios.post.mockImplementation(() => Promise.reject({status: 400, data: {error: "Login Failed"}}));
 
   fireEvent.click(container.querySelector("button[name=loginButton]"));
-  
+
   expect(container.querySelector("input[name=email]")).toBeInTheDocument();
 });

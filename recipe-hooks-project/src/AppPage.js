@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
+import {AuthContext} from "./contexts/AuthenticationProvider";
 import RecipeApp from "./RecipeApp";
 import Login from "./Login";
-import {AuthContext} from "./contexts/AuthenticationProvider";
 
 export default function AppPage(props) {
   const {token} = useContext(AuthContext);

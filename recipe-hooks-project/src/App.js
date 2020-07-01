@@ -1,15 +1,20 @@
 import React from "react";
 import {AuthenticationProvider} from "./contexts/AuthenticationProvider";
-import AppPage from "./AppPage";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Switch} from "react-router-dom";
+import {ThemeProvider} from "styled-components";
+import {Routes} from "./components/Routes";
 
 function App() {
   return (
-    <AuthenticationProvider>
-      <BrowserRouter>
-        <AppPage/>
-      </BrowserRouter>
-    </AuthenticationProvider>
+    <ThemeProvider theme={{mode: "light"}}>
+      <AuthenticationProvider>
+        <BrowserRouter>
+          <Switch>
+            <Routes/>
+          </Switch>
+        </BrowserRouter>
+      </AuthenticationProvider>
+    </ThemeProvider>
   );
 }
 
