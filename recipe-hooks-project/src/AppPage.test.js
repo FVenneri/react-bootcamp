@@ -5,15 +5,13 @@ import {AuthContext, AuthenticationProvider} from "./contexts/AuthenticationProv
 import axios from "axios";
 import AppPage from "./AppPage";
 import Login from "./Login";
+import {BrowserRouter} from "react-router-dom";
 
 jest.mock("axios");
 
 test("when not authenticated, renders login", () => {
-  const {container} = render(
-    <AuthContext.Provider value={{token: null}}>
-      <AppPage/>
-    </AuthContext.Provider>
-  );
+  const {container} = renderAppPageWithoutAuthentication();
+
   expect(container.querySelector("h3")).toHaveTextContent("Login");
 });
 
@@ -28,11 +26,7 @@ test("when authenticated, do not render login", () => {
 });
 
 test("when not authenticated, an user can login", async () => {
-  const {container, getByText} = render(
-    <AuthenticationProvider value={{token: null}}>
-      <AppPage/>
-    </AuthenticationProvider>
-  );
+  const {container, getByText} = renderAppPageWithoutAuthentication();
 
   axios.post.mockImplementation(() => Promise.resolve({status: 200, data: {token: "myToken"}}));
 
@@ -44,11 +38,7 @@ test("when not authenticated, an user can login", async () => {
 });
 
 test("login fails", async () => {
-  const {container} = render(
-    <AuthenticationProvider value={{token: null}}>
-      <AppPage/>
-    </AuthenticationProvider>
-  );
+  const {container} = renderAppPageWithoutAuthentication();
 
   axios.post.mockImplementation(() => Promise.reject({status: 400, data: {error: "Login Failed"}}));
 
@@ -56,3 +46,13 @@ test("login fails", async () => {
 
   expect(container.querySelector("input[name=email]")).toBeInTheDocument();
 });
+
+function renderAppPageWithoutAuthentication() {
+  return render(
+    <AuthenticationProvider value={{token: null}}>
+      <BrowserRouter>
+        <AppPage/>
+      </BrowserRouter>
+    </AuthenticationProvider>
+  );
+}
