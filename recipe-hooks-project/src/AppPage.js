@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React, {memo, useContext} from "react";
 import {AuthContext} from "./contexts/AuthenticationProvider";
 import RecipeApp from "./RecipeApp";
 import Login from "./Login";
 
-export default function AppPage(props) {
+function AppPage() {
   const {token} = useContext(AuthContext);
 
   return (
@@ -16,6 +16,9 @@ export default function AppPage(props) {
           <Login/>
         </>
       }
+      {/*<RecipeApp title="Recipe App"/>*/}
     </div>
   );
-};
+}
+
+export default memo(AppPage);

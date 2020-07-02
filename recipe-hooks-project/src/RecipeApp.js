@@ -1,9 +1,11 @@
-import React from "react";
+import React, {memo} from "react";
 
-export default function RecipeApp(props) {
+function RecipeApp(props) {
   return (
     <div>
       <h1>{props.title}</h1>
     </div>
   );
-};
+}
+
+export default memo(RecipeApp);

@@ -1,15 +1,15 @@
-import React from "react";
+import React, {memo} from "react";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
 import {Container, Form, FormTitle, Input, SubmitButton} from "./components/Form"
 import useInputState from "./hooks/useInputState";
 import useToggleState from "./hooks/useToggleState";
 
-export default function Register(props) {
+function Register() {
   const [email, handleEmailChange] = useInputState("");
   const [password, handlePasswordChange] = useInputState("");
   const [name, handleNameChange] = useInputState("");
-  const [redirect, setRedirect] = useToggleState(false)
+  const [redirect, toggleRedirect] = useToggleState(false)
 
   async function handleRegistration(evt) {
     evt.preventDefault();
@@ -19,7 +19,7 @@ export default function Register(props) {
       );
       if (response.status === 201) {
         console.log("User created!");
-        setRedirect();
+        toggleRedirect();
       }
     } catch (e) {
       console.log("Registration failed"); //FIXME message to user?
@@ -46,4 +46,6 @@ export default function Register(props) {
       </Container>
     </>
   );
-};
+}
+
+export default memo(Register);

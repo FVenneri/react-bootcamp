@@ -19,7 +19,7 @@ const AppDescription = styled.div`
   margin: 1em;
 `;
 
-export default function Home(props) {
+export default function Home() {
   return (
     <SplashScreen>
       <img src={PatatasBravas} alt="Patatas bravas"/>

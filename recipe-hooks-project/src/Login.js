@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
+import React, {memo, useContext} from "react";
 import useInputState from "./hooks/useInputState";
 import axios from "axios";
 import {Container, Form, FormTitle, Input, SubmitButton} from "./components/Form"
 import {AuthContext} from "./contexts/AuthenticationProvider";
 import {Link} from "react-router-dom";
 
-export default function Login() {
+function Login() {
   const [email, handleEmailChange] = useInputState("");
   const [password, handlePasswordChange] = useInputState("");
   const {login} = useContext(AuthContext);
@@ -34,4 +34,6 @@ export default function Login() {
       </Form>
     </Container>
   );
-};
+}
+
+export default memo(Login);

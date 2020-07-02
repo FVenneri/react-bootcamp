@@ -19,7 +19,8 @@ const Form = styled.form`
   width: 20%;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
   margin: auto;
-  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 const Input = styled.input.attrs(props => ({
@@ -29,7 +30,6 @@ const Input = styled.input.attrs(props => ({
   size: "1em",
   onChange: props.onChange
 }))`
-  color: blue;
   font-size: 1em;
   border: 2px solid blue;
   border-radius: 3px;
