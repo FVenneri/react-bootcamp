@@ -18,14 +18,6 @@ const Section = styled.div`
   padding-bottom: 1.5em;
   margin: auto;
 `;
-const Title = styled(Section)`
-  height: 1em;
-  font-size: 1.5em;
-  font-weight: 500;
-  margin: auto;
-  justify-content: center;
-  padding-top: 1.5em;
-`;
 const Label = styled.label`
   font-size: 1em;
   width: 20%;
@@ -99,4 +91,4 @@ const Overlay = styled.div.attrs((props) => ({
   }
 `;
 
-export {ProfileCard, Section, Title, Label, Input, EditSection, ActionIcon, Overlay};
+export {ProfileCard, Section, Label, Input, EditSection, ActionIcon, Overlay};

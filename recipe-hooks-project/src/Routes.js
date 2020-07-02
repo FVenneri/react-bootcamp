@@ -4,10 +4,12 @@ import AppPage from "./AppPage";
 import Home from "./Home";
 import Register from "./Register";
 import Profile from "./Profile";
+import Ingredients from "./Ingredients";
 
 export function Routes() {
   return (
     <>
+      <Route exact path="/app/recipe/ingredients" component={Ingredients}/>
       <Route exact path="/app/profile" component={Profile}/>
       <Route exact path="/app/register" component={Register}/>
       <Route exact path="/app" component={AppPage}/>

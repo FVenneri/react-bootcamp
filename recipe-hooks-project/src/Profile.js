@@ -1,8 +1,8 @@
 import React, {memo, useEffect} from "react";
 import axios from "axios";
 import "@fortawesome/fontawesome-free/css/all.css"
-import {Wrapper} from "./components/General";
-import {ProfileCard, Section, Title, Label, Input, EditSection, ActionIcon, Overlay} from "./components/Profile";
+import {Wrapper, Title} from "./components/General";
+import {ProfileCard, Section, Label, Input, EditSection, ActionIcon, Overlay} from "./components/Profile";
 import {RECIPE_API_BASE_URL} from "./App";
 import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
@@ -20,14 +20,14 @@ function Profile() {
   useEffect(() => {
     async function fetchProfile() {
       const profile = await axios.get(RECIPE_API_BASE_URL + USER_PROFILE_API_RELATIVE_URL,
-        {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}});
+        {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login
       setEmail(profile.data.email);
       setName(profile.data.name);
     }
 
     fetchProfile();
   }, []);
-  
+
   function toggleReadonly(e) {
     e.preventDefault();
     toggleIsEditing();
