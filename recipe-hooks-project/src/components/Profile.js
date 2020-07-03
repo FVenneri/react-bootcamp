@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Section} from "./General";
 
 const ProfileCard = styled.form`
   display: flex;
@@ -8,14 +9,6 @@ const ProfileCard = styled.form`
   width: 30%;
   border: 2px solid lightgray;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
-  margin: auto;
-`;
-const Section = styled.div`
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 90%;
-  padding-bottom: 1.5em;
   margin: auto;
 `;
 const Label = styled.label`
@@ -91,4 +84,4 @@ const Overlay = styled.div.attrs((props) => ({
   }
 `;
 
-export {ProfileCard, Section, Label, Input, EditSection, ActionIcon, Overlay};
+export {ProfileCard, Label, Input, EditSection, ActionIcon, Overlay};

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {Section} from "./Profile";
 
 const Wrapper = styled.div`
   height: 90vh;
@@ -11,6 +10,14 @@ const Wrapper = styled.div`
   color: blue;
 `;
 
+const Section = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 90%;
+  padding-bottom: 1.5em;
+  margin: auto;
+`;
 const Title = styled(Section)`
   height: 1em;
   font-size: 1.5em;
@@ -20,4 +27,4 @@ const Title = styled(Section)`
   padding-top: 1.5em;
 `;
 
-export {Wrapper, Title};
+export {Wrapper, Title, Section};

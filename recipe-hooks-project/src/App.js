@@ -4,6 +4,7 @@ import {BrowserRouter, Switch} from "react-router-dom";
 import {ThemeProvider} from "styled-components";
 import {Routes} from "./Routes";
 import Navbar from "./Navbar";
+import "./App.css";
 
 const RECIPE_API_BASE_URL = "http://localhost:8000/api";
 
@@ -12,10 +13,12 @@ function App() {
     <ThemeProvider theme={{mode: "light"}}>
       <AuthenticationProvider>
         <BrowserRouter>
-          <Navbar/>
-          <Switch>
-            <Routes/>
-          </Switch>
+          <div className="test">
+            <Navbar/>
+            <Switch>
+              <Routes/>
+            </Switch>
+          </div>
         </BrowserRouter>
       </AuthenticationProvider>
     </ThemeProvider>
