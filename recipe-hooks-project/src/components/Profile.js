@@ -47,41 +47,5 @@ const EditSection = styled(Section)`
 const ActionIcon = styled.i.attrs((props) => ({
   ...props
 }))``;
-const Overlay = styled.div.attrs((props) => ({
-  ...props,
-}))`
-  color: red;
-  background: white;
-  font-weight: 400;
-  border: 2px solid red;
-  box-shadow: 0 19px 38px rgba(220, 20, 60, 0.3), 0 15px 12px rgba(220, 20, 60, 0.1);
-  z-index: 10;
-  width: 25%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0; 
-  top: 10%; 
-  right: 0; 
-  bottom: 0;
-  margin: 0 auto;
-  
-  display: ${props => props.show ? "" : "none"};
-  -webkit-animation: ${props => props.show ? `fadeInOut ${props.animationDuration / 1000}s linear forwards` : ""};
-  animation: ${props => props.show ? `fadeInOut ${props.animationDuration / 1000}s linear forwards` : ""};
-  
-  @-webkit-keyframes fadeInOut {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-  @keyframes fadeInOut {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-`;
 
-export {ProfileCard, Label, Input, EditSection, ActionIcon, Overlay};
+export {ProfileCard, Label, Input, EditSection, ActionIcon};

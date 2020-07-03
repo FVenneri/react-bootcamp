@@ -17,43 +17,43 @@ import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
 import useTimedToggle from "./hooks/useTimedToggle";
 
-const INGREDIENTS_RELATIVE_URL = "/recipe/ingredients/";
+const TAGS_RELATIVE_URL = "/recipe/tags/";
 
-function Ingredients() {
-  const [ingredientsList, setIngredients] = useState([]);
-  const [newIngredient, handleNewIngredientChange, resetNewIngredient] = useInputState("");
-  const [addingIngredient, toggleAddIngredient] = useToggle(false);
+function Tags() {
+  const [tagsList, setTags] = useState([]);
+  const [newTag, handleNewTagChange, resetNewIngredient] = useInputState("");
+  const [addingTag, toggleAddTag] = useToggle(false);
   const [showError, toggleError] = useTimedToggle(false);
   const [filterByAssignedToRecipe, toggleFilterByAssignedToRecipe] = useToggle(false);
 
-  async function fetchIngredients() {
+  async function fetchTags() {
     const headers = {
       Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"
     }; //FIXME it should work with a real login
     const response = await axios.request({
-      url: RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
+      url: RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       method: "get",
       params: {
         assigned_only: filterByAssignedToRecipe ? 1 : 0,
         headers: headers
       }
     });
-    const ingredients = response.data;
-    setIngredients(ingredients);
+    const tags = response.data;
+    setTags(tags);
   }
 
   useEffect(() => {
-    fetchIngredients();
+    fetchTags();
   }, [filterByAssignedToRecipe]);
 
-  async function handleNewIngredientCreation(e) {
+  async function handleNewTagCreation(e) {
     e.preventDefault();
-    const response = await axios.post(RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
-      {name: newIngredient},
+    const response = await axios.post(RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
+      {name: newTag},
       {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login)
     if (response.status === 201) {
-      toggleAddIngredient();
-      fetchIngredients();
+      toggleAddTag();
+      fetchTags();
     } else {
       toggleError(3000);
     }
@@ -62,14 +62,14 @@ function Ingredients() {
   return (
     <Wrapper>
       <Title>
-        <div>Your favorite ingredients</div>
+        <div>Your favorite tags</div>
       </Title>
       <div>
-        <span>Filter ingredients used in recipes</span>
+        <span>Filter tags used in recipes</span>
         <input type="checkbox" value={filterByAssignedToRecipe} onChange={toggleFilterByAssignedToRecipe}/>
       </div>
       <List>
-        {ingredientsList.map(e => {
+        {tagsList.map(e => {
           return (
             <ListItem id={e.id} key={e.id}>
               <ListItemImage src={`https://loremflickr.com/320/240/${e.name}`} alt={e.name}/>
@@ -78,21 +78,21 @@ function Ingredients() {
         })}
       </List>
       {
-        addingIngredient
-          ? <form onSubmit={handleNewIngredientCreation}>
-            <Input type="text" id="ingredientInput" value={newIngredient} onChange={handleNewIngredientChange}/>
-            <Button primary onClick={handleNewIngredientCreation}><span>Create</span></Button>
+        addingTag
+          ? <form onSubmit={handleNewTagCreation}>
+            <Input type="text" id="tagInput" value={newTag} onChange={handleNewTagChange}/>
+            <Button primary onClick={handleNewTagCreation}><span>Create</span></Button>
           </form>
-          : <Button primary onClick={toggleAddIngredient}><span>Add new ingredient</span></Button>
+          : <Button primary onClick={toggleAddTag}><span>Add new tag</span></Button>
       }
 
       <OverlayOpaqueBackground show={showError}>
         <Overlay id="errorMessage" show={showError} animationDuration={3000}>
-          <span>Error saving the ingredient, retry!</span>
+          <span>Error saving the tag, retry!</span>
         </Overlay>
       </OverlayOpaqueBackground>
     </Wrapper>
   );
 }
 
-export default memo(Ingredients);
+export default memo(Tags);

@@ -1,8 +1,8 @@
 import React, {memo, useEffect} from "react";
 import axios from "axios";
 import "@fortawesome/fontawesome-free/css/all.css"
-import {Wrapper, Title, Section} from "./components/General";
-import {ProfileCard, Label, Input, EditSection, ActionIcon, Overlay} from "./components/Profile";
+import {Wrapper, Title, Section, Overlay} from "./components/General";
+import {ProfileCard, Label, Input, EditSection, ActionIcon} from "./components/Profile";
 import {RECIPE_API_BASE_URL} from "./App";
 import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
