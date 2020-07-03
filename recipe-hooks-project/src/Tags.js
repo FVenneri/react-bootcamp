@@ -21,7 +21,7 @@ const TAGS_RELATIVE_URL = "/recipe/tags/";
 
 function Tags() {
   const [tagsList, setTags] = useState([]);
-  const [newTag, handleNewTagChange, resetNewIngredient] = useInputState("");
+  const [newTag, handleNewTagChange, resetNewTag] = useInputState("");
   const [addingTag, toggleAddTag] = useToggle(false);
   const [showError, toggleError] = useTimedToggle(false);
   const [filterByAssignedToRecipe, toggleFilterByAssignedToRecipe] = useToggle(false);
@@ -53,6 +53,7 @@ function Tags() {
       {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login)
     if (response.status === 201) {
       toggleAddTag();
+      resetNewTag();
       fetchTags();
     } else {
       toggleError(3000);

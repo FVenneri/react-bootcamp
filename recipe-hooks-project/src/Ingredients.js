@@ -53,6 +53,7 @@ function Ingredients() {
       {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login)
     if (response.status === 201) {
       toggleAddIngredient();
+      resetNewIngredient();
       fetchIngredients();
     } else {
       toggleError(3000);
