@@ -70,11 +70,11 @@ function Tags() {
         <input type="checkbox" value={filterByAssignedToRecipe} onChange={toggleFilterByAssignedToRecipe}/>
       </div>
       <List>
-        {tagsList.map(e => {
+        {tagsList.map(tag => {
           return (
-            <ListItem id={e.id} key={e.id}>
-              <ListItemImage src={`https://loremflickr.com/320/240/${e.name}`} alt={e.name}/>
-              <ListItemCaption>{e.name}</ListItemCaption>
+            <ListItem id={tag.id} key={tag.id}>
+              <ListItemImage src={`https://loremflickr.com/320/240/${tag.name}`} alt={tag.name}/>
+              <ListItemCaption>{tag.name}</ListItemCaption>
             </ListItem>)
         })}
       </List>

@@ -1,4 +1,6 @@
 import React, {memo, useEffect, useState} from "react";
+import axios from "axios";
+import {RECIPE_API_BASE_URL} from "./App";
 import {
   Button,
   List,
@@ -10,8 +12,6 @@ import {
   Title,
   Wrapper
 } from "./components/General";
-import axios from "axios";
-import {RECIPE_API_BASE_URL} from "./App";
 import {Input} from "./components/Form";
 import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
@@ -70,11 +70,11 @@ function Ingredients() {
         <input type="checkbox" value={filterByAssignedToRecipe} onChange={toggleFilterByAssignedToRecipe}/>
       </div>
       <List>
-        {ingredientsList.map(e => {
+        {ingredientsList.map(ingredient => {
           return (
-            <ListItem id={e.id} key={e.id}>
-              <ListItemImage src={`https://loremflickr.com/320/240/${e.name}`} alt={e.name}/>
-              <ListItemCaption>{e.name}</ListItemCaption>
+            <ListItem id={ingredient.id} key={ingredient.id}>
+              <ListItemImage src={`https://loremflickr.com/320/240/${ingredient.name}`} alt={ingredient.name}/>
+              <ListItemCaption>{ingredient.name}</ListItemCaption>
             </ListItem>)
         })}
       </List>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
   height: 90vh;
@@ -122,6 +123,12 @@ const List = styled.ul`
   overflow: auto;
 `;
 
+const StyledListItemLink = styled(Link).attrs(props => ({
+  ...props
+}))`
+  width: 30%;
+`;
+
 const ListItem = styled.li`
   text-decoration: none;
   display: flex;
@@ -131,7 +138,6 @@ const ListItem = styled.li`
   border: 2px solid blue;
   box-shadow: 0 15px 20px rgba(0, 0, 139, 0.3), 0 10px 7px rgba(0, 0, 139, 0.1);
   border-radius: 5px;
-  width: 20%;
   padding: 30px;
   margin: 1em;
   background: #eae9e9;
@@ -145,6 +151,7 @@ const ListItemImage = styled.img`
   max-width: 80%;
   object-fit: cover;
 `;
+
 export {
   Wrapper,
   Title,
@@ -153,6 +160,7 @@ export {
   OverlayOpaqueBackground,
   Button,
   List,
+  StyledListItemLink,
   ListItem,
   ListItemCaption,
   ListItemImage
