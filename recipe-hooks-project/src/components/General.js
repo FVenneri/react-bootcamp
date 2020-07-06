@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
-  height: 90vh;
+  // height: 90vh;
   padding: auto;
   display: flex;
   align-items: center;
@@ -121,6 +121,9 @@ const List = styled.ul`
   // flex-direction: column;
   flex-wrap: wrap;  
   overflow: auto;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
 `;
 
 const StyledListItemLink = styled(Link).attrs(props => ({

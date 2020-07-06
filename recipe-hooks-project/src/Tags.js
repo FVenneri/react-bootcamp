@@ -97,3 +97,4 @@ function Tags() {
 }
 
 export default memo(Tags);
+export {TAGS_RELATIVE_URL};

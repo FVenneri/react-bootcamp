@@ -8,6 +8,7 @@ import {RECIPES_RELATIVE_URL} from "./Recipes";
 const Recipe = styled.div.attrs(props => ({
   ...props
 }))`
+  margin-top: 2em;
   border: 2px solid darkblue;
   border-radius: 5px;
   -webkit-box-sizing: border-box;

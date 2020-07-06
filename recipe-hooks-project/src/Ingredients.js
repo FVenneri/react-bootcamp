@@ -97,3 +97,4 @@ function Ingredients() {
 }
 
 export default memo(Ingredients);
+export {INGREDIENTS_RELATIVE_URL};
