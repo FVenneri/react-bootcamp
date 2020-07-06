@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from "react";
+import React, {memo, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {RECIPE_API_BASE_URL} from "./App";
 import {
@@ -16,10 +16,13 @@ import {Input} from "./components/Form";
 import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
 import useTimedToggle from "./hooks/useTimedToggle";
+import {AuthContext} from "./contexts/AuthenticationProvider";
 
 const INGREDIENTS_RELATIVE_URL = "/recipe/ingredients/";
 
 function Ingredients() {
+  const {token} = useContext(AuthContext)
+
   const [ingredientsList, setIngredients] = useState([]);
   const [newIngredient, handleNewIngredientChange, resetNewIngredient] = useInputState("");
   const [addingIngredient, toggleAddIngredient] = useToggle(false);
@@ -28,8 +31,8 @@ function Ingredients() {
 
   async function fetchIngredients() {
     const headers = {
-      Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"
-    }; //FIXME it should work with a real login
+      Authorization: "Token " + token
+    };
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
       method: "get",
@@ -50,7 +53,7 @@ function Ingredients() {
     e.preventDefault();
     const response = await axios.post(RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
       {name: newIngredient},
-      {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login)
+      {headers: {Authorization: "Token " + token}});
     if (response.status === 201) {
       toggleAddIngredient();
       resetNewIngredient();

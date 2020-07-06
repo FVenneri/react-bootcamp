@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from "react";
+import React, {memo, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import {RECIPE_API_BASE_URL} from "./App";
@@ -17,6 +17,7 @@ import {Label} from "./components/Profile";
 import useInputState from "./hooks/useInputState";
 import {INGREDIENTS_RELATIVE_URL} from "./Ingredients";
 import {TAGS_RELATIVE_URL} from "./Tags";
+import {AuthContext} from "./contexts/AuthenticationProvider";
 
 const RECIPES_RELATIVE_URL = "/recipe/recipes/";
 
@@ -55,6 +56,8 @@ const Filter = styled.div.attrs(props => ({
 `;
 
 function Recipes() {
+  const {token} = useContext(AuthContext)
+
   const [recipesList, setRecipes] = useState([]);
   const [ingredientsList, setIngredients] = useState([]);
   const [tagsList, setTags] = useState([]);
@@ -69,7 +72,7 @@ function Recipes() {
   async function fetchRecipes() {
     let params = {
       headers: {
-        Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+        Authorization: "Token " + token
       }
     };
     if (selectedIngredients.length > 0)
@@ -99,7 +102,7 @@ function Recipes() {
       method: "get",
       params: {
         headers: {
-          Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+          Authorization: "Token " + token
         }
       }
     });
@@ -113,7 +116,7 @@ function Recipes() {
       method: "get",
       params: {
         headers: {
-          Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+          Authorization: "Token " + token
         }
       }
     });
@@ -136,7 +139,7 @@ function Recipes() {
       },
       params: {
         headers: {
-          Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+          Authorization: "Token " + token
         }
       }
     });

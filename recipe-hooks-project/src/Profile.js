@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from "react";
+import React, {memo, useContext, useEffect} from "react";
 import axios from "axios";
 import "@fortawesome/fontawesome-free/css/all.css"
 import {Wrapper, Title, Section, Overlay} from "./components/General";
@@ -7,10 +7,13 @@ import {RECIPE_API_BASE_URL} from "./App";
 import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
 import useTimedToggle from "./hooks/useTimedToggle";
+import {AuthContext} from "./contexts/AuthenticationProvider";
 
 const USER_PROFILE_API_RELATIVE_URL = "/user/me/";
 
 function Profile() {
+  const {token} = useContext(AuthContext)
+
   const [isEditing, toggleIsEditing] = useToggle(false);
   const [email, , setEmail] = useInputState("");
   const [password, handlePasswordChange] = useInputState("");
@@ -20,7 +23,7 @@ function Profile() {
   useEffect(() => {
     async function fetchProfile() {
       const profile = await axios.get(RECIPE_API_BASE_URL + USER_PROFILE_API_RELATIVE_URL,
-        {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login
+        {headers: {Authorization: "Token " + token}});
       setEmail(profile.data.email);
       setName(profile.data.name);
     }

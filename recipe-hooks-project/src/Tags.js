@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from "react";
+import React, {memo, useContext, useEffect, useState} from "react";
 import {
   Button,
   List,
@@ -16,10 +16,13 @@ import {Input} from "./components/Form";
 import useInputState from "./hooks/useInputState";
 import useToggle from "./hooks/useToggleState";
 import useTimedToggle from "./hooks/useTimedToggle";
+import {AuthContext} from "./contexts/AuthenticationProvider";
 
 const TAGS_RELATIVE_URL = "/recipe/tags/";
 
 function Tags() {
+  const {token} = useContext(AuthContext)
+
   const [tagsList, setTags] = useState([]);
   const [newTag, handleNewTagChange, resetNewTag] = useInputState("");
   const [addingTag, toggleAddTag] = useToggle(false);
@@ -27,9 +30,7 @@ function Tags() {
   const [filterByAssignedToRecipe, toggleFilterByAssignedToRecipe] = useToggle(false);
 
   async function fetchTags() {
-    const headers = {
-      Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"
-    }; //FIXME it should work with a real login
+    const headers = {Authorization: "Token " + token};
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       method: "get",
@@ -50,7 +51,7 @@ function Tags() {
     e.preventDefault();
     const response = await axios.post(RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       {name: newTag},
-      {headers: {Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e"}}); //FIXME it should work with a real login)
+      {headers: {Authorization: "Token " + token}});
     if (response.status === 201) {
       toggleAddTag();
       resetNewTag();

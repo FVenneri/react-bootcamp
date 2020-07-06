@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styled from "styled-components";
 import {Button, Wrapper} from "./components/General";
 import axios from "axios";
 import {RECIPE_API_BASE_URL} from "./App";
 import {RECIPES_RELATIVE_URL} from "./Recipes";
 import {Form, Input} from "./components/Form";
+import {AuthContext} from "./contexts/AuthenticationProvider";
 
 const Recipe = styled.div.attrs(props => ({
   ...props
@@ -60,6 +61,8 @@ const ImageInput = styled(Input).attrs(props => ({
 `;
 
 export default function RecipeDetails(props) {
+  const {token} = useContext(AuthContext)
+
   const [recipe, setRecipe] = useState({});
   const [image, setImage] = useState(null);
 
@@ -69,7 +72,7 @@ export default function RecipeDetails(props) {
       method: "get",
       params: {
         headers: {
-          Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+          Authorization: "Token " + token
         }
       }
     });
@@ -97,7 +100,7 @@ export default function RecipeDetails(props) {
       data: formData,
       params: {
         headers: {
-          Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+          Authorization: "Token " + token
         }
       }
     });
