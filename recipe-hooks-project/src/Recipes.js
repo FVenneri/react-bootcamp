@@ -37,6 +37,22 @@ const RecipeFormSelect = styled.select.attrs(props => ({
   width: 50%;
   margin-top: 20px;
 `;
+const Filters = styled.div.attrs(props => ({
+  ...props
+}))`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+`;
+const Filter = styled.div.attrs(props => ({
+  ...props
+}))`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+`;
 
 function Recipes() {
   const [recipesList, setRecipes] = useState([]);
@@ -48,28 +64,34 @@ function Recipes() {
   const [title, handleTitleChange] = useInputState("");
   const [time, handleTimeChange] = useInputState("");
   const [price, handlePriceChange] = useInputState("");
+  const [link, handleLinkChange] = useInputState("");
 
   async function fetchRecipes() {
+    let params = {
+      headers: {
+        Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
+      }
+    };
+    if (selectedIngredients.length > 0)
+      params = {...params, ingredients: selectedIngredients.join(",")};
+    if (selectedTags.length > 0)
+      params = {...params, tags: selectedTags.join(",")};
+
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + RECIPES_RELATIVE_URL,
       method: "get",
-      params: {
-        headers: {
-          Authorization: "Token 771588d4be688173e35ffe08caec07ac8a95009e" //FIXME it should work with a real login
-        }
-      }
+      params: {...params}
     });
     const recipes = response.data;
     setRecipes(recipes);
   }
 
   useEffect(() => {
-    if (isCreatingNewRecipe) {
-      fetchIngredients();
-      fetchTags();
-    } else
+    fetchIngredients();
+    fetchTags();
+    if (!isCreatingNewRecipe)
       fetchRecipes();
-  }, [isCreatingNewRecipe]);
+  }, [isCreatingNewRecipe, selectedIngredients, selectedTags]);
 
   async function fetchIngredients() {
     const response = await axios.request({
@@ -108,8 +130,9 @@ function Recipes() {
         "title": title,
         "ingredients": selectedIngredients,
         "tags": selectedTags,
-        "time_minutes": 60,
-        "price": 5.00
+        "time_minutes": time,
+        "price": price,
+        "link": link
       },
       params: {
         headers: {
@@ -145,7 +168,7 @@ function Recipes() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper id="recipesWrapper">
       <Title>
         <div>Your favorite recipes</div>
       </Title>
@@ -189,23 +212,53 @@ function Recipes() {
                 <Input type="text" id="priceInput" value={price} onChange={handlePriceChange}/>
               </RecipeFormSection>
               <RecipeFormSection>
+                <Label htmlFor="linkInput">Link: </Label>
+                <Input type="text" id="linkInput" value={link} onChange={handleLinkChange}/>
+              </RecipeFormSection>
+              <RecipeFormSection>
                 <Button onClick={handleCreateRecipe}>Create recipe</Button>
               </RecipeFormSection>
             </RecipeForm>
           </>
           : <>
-            <Button onClick={toggleCreatingNewRecipe}>Add new recipe</Button>
+            <Filters>
+              <Filter>
+                <Label htmlFor="selectIngredients">Ingredients</Label>
+                <RecipeFormSelect id="selectIngredients" onChange={handleSelectIngredients} multiple>
+                  {
+                    ingredientsList.map((item, i) => {
+                      return (
+                        <option key={i} value={item.id}>{item.name}</option>
+                      )
+                    }, this)}
+                </RecipeFormSelect>
+              </Filter>
+            </Filters>
+            <Filters>
+              <Filter>
+                <Label htmlFor="selectTags">Tags</Label>
+                <RecipeFormSelect id="selectTags" onChange={handleSelectTags} multiple>
+                  {
+                    tagsList.map((item, i) => {
+                      return (
+                        <option key={i} value={item.id}>{item.name}</option>
+                      )
+                    }, this)}
+                </RecipeFormSelect>
+              </Filter>
+            </Filters>
             <List>
               {recipesList.map(recipe => {
                 return (
                   <StyledListItemLink key={`link-to-recipe-${recipe.id}`} to={`/app/recipe/recipes/${recipe.id}`}>
                     <ListItem id={recipe.id} key={recipe.id}>
-                      <ListItemImage src={`https://loremflickr.com/320/240/${recipe.title}`} alt={recipe.title}/>
+                      <ListItemImage src={recipe.image} alt={recipe.title}/>
                       <ListItemCaption>{recipe.title}</ListItemCaption>
                     </ListItem>
                   </StyledListItemLink>)
               })}
             </List>
+            <Button onClick={toggleCreatingNewRecipe}>Add new recipe</Button>
           </>
       }
     </Wrapper>
