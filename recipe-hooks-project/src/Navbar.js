@@ -18,24 +18,22 @@ const AppName = styled.div`
   font-weight: 500;
 `;
 
-const StyledLink = styled(
-  styled(Link)`
-    color: white;
-    display: block;
-    margin: 0.5em 0;
-    font-size: 1em;
-    
-    &:hover {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  `,
-  "active"
-)`
+const StyledLink = styled(Link).attrs(props => ({
+  ...props
+}))`
+  color: white;
+  display: block;
+  margin: 0.5em 0;
+  font-size: 1em;
+  
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 export default function Navbar() {
-  const {logout} = useContext(AuthContext);
+  const {token, logout} = useContext(AuthContext);
 
   function handleLogout(e) {
     logout();
@@ -43,9 +41,9 @@ export default function Navbar() {
 
   return (
     <NavbarContainer name="Navbar">
-      <AppName>Recipe App</AppName>
-      <StyledLink to="/app/profile" name="Profile">Profile</StyledLink>
-      <StyledLink to="/app" name="Logout" onClick={handleLogout}>Logout</StyledLink>
+      <StyledLink to="/app" name="goToHome"><AppName>Recipe App</AppName></StyledLink>
+      {token !== null && <StyledLink to="/app/profile" name="Profile">Profile</StyledLink>}
+      <StyledLink to="/" name="Logout" onClick={handleLogout}>Logout</StyledLink>
     </NavbarContainer>
   );
 };

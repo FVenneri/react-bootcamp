@@ -70,10 +70,8 @@ export default function RecipeDetails(props) {
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + RECIPES_RELATIVE_URL + props.match.params.id,
       method: "get",
-      params: {
-        headers: {
-          Authorization: "Token " + token
-        }
+      headers: {
+        Authorization: "Token " + token
       }
     });
     const recipe = response.data;
@@ -83,7 +81,7 @@ export default function RecipeDetails(props) {
 
   useEffect(() => {
     fetchRecipe();
-  });
+  }, []);
 
   function handleChangeImage(e) {
     e.preventDefault();
@@ -98,10 +96,8 @@ export default function RecipeDetails(props) {
       url: RECIPE_API_BASE_URL + RECIPES_RELATIVE_URL + props.match.params.id + "/upload-image/",
       method: "post",
       data: formData,
-      params: {
-        headers: {
-          Authorization: "Token " + token
-        }
+      headers: {
+        Authorization: "Token " + token
       }
     });
     if (response.status === 200) {

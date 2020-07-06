@@ -11,7 +11,8 @@ export function AuthenticationProvider(props) {
   const logout = () => {
     console.log("Logging out token " + token)
     setToken(null);
-  }
+  };
+  
   return (
     <AuthContext.Provider value={{token: token, login: login, logout: logout}}>
       {props.children}

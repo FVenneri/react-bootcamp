@@ -8,7 +8,13 @@ const SplashScreen = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  margin-top: 50px;
+`;
+
+const Image = styled.img.attrs(props => ({
+  ...props
+}))`
+  max-width: 70%;
 `;
 
 const AppDescription = styled.div`
@@ -22,7 +28,7 @@ const AppDescription = styled.div`
 export default function Home() {
   return (
     <SplashScreen>
-      <img src={PatatasBravas} alt="Patatas bravas"/>
+      <Image src={PatatasBravas} alt="Patatas bravas"/>
       <AppDescription>
         Use this amazing app to build your own cookbook!
       </AppDescription>
