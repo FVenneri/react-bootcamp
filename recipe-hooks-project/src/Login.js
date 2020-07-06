@@ -16,8 +16,10 @@ function Login() {
       const response = await axios.post("http://localhost:8000/api/user/token/",
         {email: email, password: password}
       );
-      if (response.status === 200)
-        login(response.token);
+      if (response.status === 200) {
+        console.log(response.data);
+        login(response.data.token);
+      }
     } catch (e) {
       console.log("Login failed"); //FIXME message to user?
     }

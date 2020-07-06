@@ -70,6 +70,7 @@ function Recipes() {
   const [link, handleLinkChange] = useInputState("");
 
   async function fetchRecipes() {
+    console.log("Fetching recipes for: [" + token + "]");
     let params = {
       headers: {
         Authorization: "Token " + token
@@ -97,6 +98,7 @@ function Recipes() {
   }, [isCreatingNewRecipe, selectedIngredients, selectedTags]);
 
   async function fetchIngredients() {
+    console.log("Fetching ingredients for: [" + token + "]");
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
       method: "get",
@@ -111,6 +113,7 @@ function Recipes() {
   }
 
   async function fetchTags() {
+    console.log("Fetching tags for: [" + token + "]");
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       method: "get",
