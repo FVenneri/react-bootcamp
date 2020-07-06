@@ -10,6 +10,7 @@ const ProfileCard = styled.form`
   border: 2px solid lightgray;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
   margin: auto;
+  margin-top: 50px;
 `;
 const Label = styled.label`
   font-size: 1em;

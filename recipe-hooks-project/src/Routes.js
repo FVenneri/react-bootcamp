@@ -16,6 +16,7 @@ export function Routes() {
       <Route exact path="/app/recipe/recipes" component={Recipes}/>
       <Route exact path="/app/recipe/tags" component={Tags}/>
       <Route exact path="/app/recipe/ingredients" component={Ingredients}/>
+      <Route exact path="/app/recipe" component={AppPage}/>
       <Route exact path="/app/profile" component={Profile}/>
       <Route exact path="/app/register" component={Register}/>
       <Route exact path="/app" component={AppPage}/>

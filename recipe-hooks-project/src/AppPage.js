@@ -16,7 +16,6 @@ function AppPage() {
           <Login/>
         </>
       }
-      {/*<RecipeApp title="Recipe App"/>*/}
     </div>
   );
 }
