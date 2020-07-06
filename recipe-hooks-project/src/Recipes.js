@@ -71,11 +71,7 @@ function Recipes() {
 
   async function fetchRecipes() {
     console.log("Fetching recipes for: [" + token + "]");
-    let params = {
-      headers: {
-        Authorization: "Token " + token
-      }
-    };
+    let params = {};
     if (selectedIngredients.length > 0)
       params = {...params, ingredients: selectedIngredients.join(",")};
     if (selectedTags.length > 0)
@@ -84,6 +80,7 @@ function Recipes() {
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + RECIPES_RELATIVE_URL,
       method: "get",
+      headers: {Authorization: "Token " + token},
       params: {...params}
     });
     const recipes = response.data;
@@ -102,10 +99,8 @@ function Recipes() {
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
       method: "get",
-      params: {
-        headers: {
-          Authorization: "Token " + token
-        }
+      headers: {
+        Authorization: "Token " + token
       }
     });
     const ingredients = response.data;
@@ -117,11 +112,7 @@ function Recipes() {
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       method: "get",
-      params: {
-        headers: {
-          Authorization: "Token " + token
-        }
-      }
+      headers: {Authorization: "Token " + token}
     });
     const tags = response.data;
     setTags(tags);
@@ -140,11 +131,7 @@ function Recipes() {
         "price": price,
         "link": link
       },
-      params: {
-        headers: {
-          Authorization: "Token " + token
-        }
-      }
+      headers: {Authorization: "Token " + token}
     });
     if (response.status === 201) {
       toggleCreatingNewRecipe();

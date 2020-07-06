@@ -30,15 +30,12 @@ function Ingredients() {
   const [filterByAssignedToRecipe, toggleFilterByAssignedToRecipe] = useToggle(false);
 
   async function fetchIngredients() {
-    const headers = {
-      Authorization: "Token " + token
-    };
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
       method: "get",
+      headers: {Authorization: "Token " + token},
       params: {
-        assigned_only: filterByAssignedToRecipe ? 1 : 0,
-        headers: headers
+        assigned_only: filterByAssignedToRecipe ? 1 : 0
       }
     });
     const ingredients = response.data;

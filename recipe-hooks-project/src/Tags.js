@@ -30,13 +30,12 @@ function Tags() {
   const [filterByAssignedToRecipe, toggleFilterByAssignedToRecipe] = useToggle(false);
 
   async function fetchTags() {
-    const headers = {Authorization: "Token " + token};
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       method: "get",
+      headers: {Authorization: "Token " + token},
       params: {
-        assigned_only: filterByAssignedToRecipe ? 1 : 0,
-        headers: headers
+        assigned_only: filterByAssignedToRecipe ? 1 : 0
       }
     });
     const tags = response.data;
