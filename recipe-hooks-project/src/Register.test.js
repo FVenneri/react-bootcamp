@@ -2,10 +2,7 @@ import React from "react";
 import {render} from "@testing-library/react";
 import {AuthenticationProvider} from "./contexts/AuthenticationProvider";
 import {BrowserRouter} from "react-router-dom";
-import axios from "axios";
 import Register from "./Register";
-
-jest.mock("axios");
 
 test("renders the page", () => {
   const {container} = renderRegisterComponent();
