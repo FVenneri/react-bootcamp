@@ -1,5 +1,5 @@
 import React from "react";
-import {fireEvent, render} from "@testing-library/react";
+import {cleanup, fireEvent, render} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "./contexts/AuthenticationProvider";
@@ -8,6 +8,8 @@ import Login from "./Login";
 import {waitForElement} from "@testing-library/dom";
 
 jest.mock("axios");
+
+afterEach(cleanup());
 
 test("when not authenticated, renders login", () => {
   const {container} = renderAppPageWithToken(null);
