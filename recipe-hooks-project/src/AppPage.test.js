@@ -9,7 +9,9 @@ import {waitForElement} from "@testing-library/dom";
 
 jest.mock("axios");
 
-afterEach(cleanup());
+afterEach(() => {
+  cleanup()
+});
 
 test("when not authenticated, renders login", () => {
   const {container} = renderAppPageWithToken(null);
