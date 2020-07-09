@@ -47,7 +47,7 @@ function Profile() {
   }
 
   async function modifyUser(password, name) {
-    if ((name === "" || name === undefined) && (password === "" || password === undefined))
+    if (!name && !password)
       return false;
 
     let modifyUserPayload;

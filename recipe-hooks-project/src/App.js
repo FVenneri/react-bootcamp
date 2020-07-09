@@ -2,7 +2,7 @@ import React from "react";
 import {AuthenticationProvider} from "./contexts/AuthenticationProvider";
 import {BrowserRouter, Switch} from "react-router-dom";
 import {ThemeProvider} from "styled-components";
-import {PrivateRoutes} from "./PrivateRoutes";
+import {Routes} from "./Routes";
 import Navbar from "./Navbar";
 import "./App.css";
 
@@ -16,7 +16,7 @@ function App() {
           <div className="test">
             <Navbar/>
             <Switch>
-              <PrivateRoutes/>
+              <Routes/>
             </Switch>
           </div>
         </BrowserRouter>

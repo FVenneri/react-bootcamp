@@ -10,13 +10,13 @@ import Recipes from "./Recipes";
 import RecipeDetails from "./RecipeDetails";
 import {AuthContext} from "./contexts/AuthenticationProvider";
 
-export function PrivateRoutes() {
+export function Routes() {
   const {token} = useContext(AuthContext);
 
   return (
     <Route
       render={() =>
-        token !== null
+        token
           ? (<>
             <Route exact path="/app/recipe/recipes/:id" render={(props) => <RecipeDetails {...props} />}/>
             <Route exact path="/app/recipe/recipes" component={Recipes}/>

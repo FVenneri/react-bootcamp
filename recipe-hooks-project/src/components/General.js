@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
-  // height: 90vh;
   padding: auto;
   display: flex;
   align-items: center;
@@ -54,8 +53,6 @@ const Overlay = styled(OverlayOpaqueBackground).attrs((props) => ({
   background: white;
   font-weight: 400;
   border: 2px solid red;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; 
   box-shadow: 0 19px 38px rgba(220, 20, 60, 0.3), 0 15px 12px rgba(220, 20, 60, 0.1);
   z-index: 20;
@@ -118,7 +115,6 @@ const List = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  // flex-direction: column;
   flex-wrap: wrap;  
   overflow: auto;
   margin-block-start: 0;

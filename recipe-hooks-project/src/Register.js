@@ -26,15 +26,11 @@ function Register() {
     }
   }
 
-  const renderRedirect = () => {
-    if (redirect) {
-      return <Redirect to="/app"/>;
-    }
-  }
-
   return (
     <>
-      {renderRedirect()}
+      {
+        redirect && <Redirect to="/app"/>
+      }
       <Container className="Register">
         <Form>
           <FormTitle>Registration</FormTitle>

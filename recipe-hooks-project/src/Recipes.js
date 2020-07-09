@@ -70,7 +70,6 @@ function Recipes() {
   const [link, handleLinkChange] = useInputState("");
 
   async function fetchRecipes() {
-    console.log("Fetching recipes for: [" + token + "]");
     let params = {};
     if (selectedIngredients.length > 0)
       params = {...params, ingredients: selectedIngredients.join(",")};
@@ -95,7 +94,6 @@ function Recipes() {
   }, [isCreatingNewRecipe, selectedIngredients, selectedTags]);
 
   async function fetchIngredients() {
-    console.log("Fetching ingredients for: [" + token + "]");
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + INGREDIENTS_RELATIVE_URL,
       method: "get",
@@ -108,7 +106,6 @@ function Recipes() {
   }
 
   async function fetchTags() {
-    console.log("Fetching tags for: [" + token + "]");
     const response = await axios.request({
       url: RECIPE_API_BASE_URL + TAGS_RELATIVE_URL,
       method: "get",
@@ -135,9 +132,7 @@ function Recipes() {
     });
     if (response.status === 201) {
       toggleCreatingNewRecipe();
-      console.log("Success");
-    } else
-      console.log("Error");
+    }
   }
 
   function handleSelectIngredients(e) {
@@ -182,7 +177,7 @@ function Recipes() {
                       return (
                         <option key={i} value={item.id}>{item.name}</option>
                       )
-                    }, this)}
+                    })}
                 </RecipeFormSelect>
               </RecipeFormSection>
               <RecipeFormSection>
@@ -193,7 +188,7 @@ function Recipes() {
                       return (
                         <option key={i} value={item.id}>{item.name}</option>
                       )
-                    }, this)}
+                    })}
                 </RecipeFormSelect>
               </RecipeFormSection>
               <RecipeFormSection>
@@ -223,7 +218,7 @@ function Recipes() {
                       return (
                         <option key={i} value={item.id}>{item.name}</option>
                       )
-                    }, this)}
+                    })}
                 </RecipeFormSelect>
               </Filter>
             </Filters>
@@ -236,7 +231,7 @@ function Recipes() {
                       return (
                         <option key={i} value={item.id}>{item.name}</option>
                       )
-                    }, this)}
+                    })}
                 </RecipeFormSelect>
               </Filter>
             </Filters>

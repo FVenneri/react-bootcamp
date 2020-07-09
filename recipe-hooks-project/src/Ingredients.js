@@ -82,9 +82,9 @@ function Ingredients() {
         addingIngredient
           ? <form onSubmit={handleNewIngredientCreation}>
             <Input type="text" id="ingredientInput" value={newIngredient} onChange={handleNewIngredientChange}/>
-            <Button primary onClick={handleNewIngredientCreation}><span>Create</span></Button>
+            <Button primary onClick={handleNewIngredientCreation}>Create</Button>
           </form>
-          : <Button primary onClick={toggleAddIngredient}><span>Add new ingredient</span></Button>
+          : <Button primary onClick={toggleAddIngredient}>Add new ingredient</Button>
       }
 
       <OverlayOpaqueBackground show={showError}>
